@@ -1,0 +1,13 @@
+from pathlib import Path
+import shutil
+
+base = "C:/Users/Kenny/Documents/Clients"
+
+for file in Path("C:/Users/Kenny/Documents/Scans").iterdir():
+    name = file.stem.split('-')[0].rstrip()
+    subdir = Path(base, name)
+    if subdir.exists():
+        new_stem = file.stem.split('-')[1].lstrip()
+        new_filename = f"{new_stem}{file.suffix}"
+        dest = subdir / new_filename
+        file.rename(dest)
